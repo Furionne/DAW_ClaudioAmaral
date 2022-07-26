@@ -1,12 +1,11 @@
-import { Service } from "typedi";
 import Carteira from "../domain/Carteira";
 import ICarteiraDTO from "../dto/ICarteiraDTO";
 import CarteiraMapper from "../mappers/CarteiraMapper";
 import CarteiraRepository from "../repository/CarteiraRepository";
-import { ICarteiraService } from "./Service_Interfaces";
 
-@Service()
-export default class CarteiraService implements ICarteiraService {
+
+
+export  default class  CarteiraService {
   private repository: CarteiraRepository;
 
   constructor() {

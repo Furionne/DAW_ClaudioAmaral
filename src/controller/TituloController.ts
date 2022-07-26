@@ -23,14 +23,21 @@ export default class TituloController {
   
     get = async (req: Request, res: Response) => {
       try {
-        let result = await this.service.getAllRecomendacoes();
+        let result = await this.service.getAllTitulos();
         res.status(200).send(result);
       } catch (err) {
         res.status(500).send("deu erro");
       }
     };
 
-    getByName = async (req: Request, res: Response) => {}
+    getByName = async (req: Request, res: Response) => {
+        try {
+          let result = await this.service.getTituloByName(req.params.id);
+          res.status(200).send(result);
+        } catch (err) {
+          res.status(500).send("Carteira não encontrada na base de dados.");
+        }
+      };
     
 
   put = async (req: Request, res: Response) => {

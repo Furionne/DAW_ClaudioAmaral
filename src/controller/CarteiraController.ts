@@ -34,7 +34,7 @@ export default class CarteiraController {
       let result = await this.service.getCarteiraByName(req.params.id);
       res.status(200).send(result);
     } catch (err) {
-      res.status(500).send("Virus não encontrado na base de dados.");
+      res.status(500).send("Carteira não encontrada na base de dados.");
     }
   };
 

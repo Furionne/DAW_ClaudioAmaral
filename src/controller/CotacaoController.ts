@@ -23,14 +23,21 @@ export default class CotacaoController {
 
   get = async (req: Request, res: Response) => {
     try {
-      let result = await this.service.getAllRecomendacoes();
+      let result = await this.service.getAllCotacoes();
       res.status(200).send(result);
     } catch (err) {
       res.status(500).send("deu erro");
     }
   };
 
-  getByName = async (req: Request, res: Response) => {}
+  getByName = async (req: Request, res: Response) => {
+    try {
+      let result = await this.service.getCotacaoByName(req.params.id);
+      res.status(200).send(result);
+    } catch (err) {
+      res.status(500).send("Cotacao não encontrada na base de dados.");
+    }
+  };
 
   put = async (req: Request, res: Response) => {
     let cotacaoDto: ICotacaoDTO = req.body;

@@ -35,7 +35,7 @@ export default class CotacaoRepository {
         umaCotacaoDoc
       );
 
-    if (result == null) return "Recomendação inexistente.";
+    if (result == null) return "Cotacao inexistente.";
     return CotacaoMapper.toDomain(result);
   }
 
@@ -51,50 +51,21 @@ export default class CotacaoRepository {
     return final_result;
   }
 
-  async findValidasByZona(id: string): Promise<any> {
-    console.log(
-      "CotacaoRepository: findValidasByZona: " + JSON.stringify(id)
-    );
+  async findByName(id: string): Promise<any | null> {
+    console.log("CotacaoRepository: findByName: " + JSON.stringify(id));
 
-    const result: ICotacaoPersistence[] =
-      await CotacaoSchema.aggregate([
-        {
-          $project: {
-            _id: 0,
-            codigo: 1,
-            zona: 1,
-            dataNota: 1,
-            validadeNota: 1,
-            descricao: 1,
-            dataValidade: {
-              $dateAdd: {
-                startDate: "$dataNota",
-                unit: "day",
-                amount: "$validadeNota",
-              },
-            },
-          },
-        },
-        {
-          $match: {
-            dataValidade: {
-              $gte: new Date(),
-            },
-            zona: id,
-          },
-        },
-      ]);
+    const result = await CotacaoSchema.findOne({ name: id });
 
-    if (result.length == 0)
-      return "Não há recomendações válidas para a zona do pais introduzido.";
-    let final_result = result.map((x) => CotacaoMapper.toDomain(x));
-    return final_result;
+    if (result == null) return null;
+
+    return CotacaoMapper.toDomain(result);
   }
 
-  async deleteByCodigo(id: string): Promise<boolean> {
+
+  async deleteByName(id: string): Promise<boolean> {
     console.log("CotacaoRepository: deleteById: " + JSON.stringify(id));
 
-    const result: any = await CotacaoSchema.deleteOne({ codigo: id });
+    const result: any = await CotacaoSchema.deleteOne({ name: id });
 
     return result.acknowledged;
   }

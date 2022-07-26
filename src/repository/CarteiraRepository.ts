@@ -54,7 +54,7 @@ export default class CarteiraRepository {
   async findByName(id: string): Promise<any | null> {
     console.log("CarteiraRepository: findByName: " + JSON.stringify(id));
 
-    const result = await CarteiraSchema.findOne({ nome: id });
+    const result = await CarteiraSchema.findOne({ name: id });
 
     if (result == null) return null;
 
