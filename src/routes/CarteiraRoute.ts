@@ -12,7 +12,7 @@ export default class CarteiraRoute {
 
     app.post("/api/carteira", this.controller.post);
     app.get("/api/carteira", this.controller.get);
-    app.get("/api/carteira/:id", this.controller.getByName);
+    app.get("/api/carteira/:id", this.controller.getByCod);
     app.put("/api/carteira/:id", this.controller.put);
     app.delete("/api/carteira/:id", this.controller.delete);
     

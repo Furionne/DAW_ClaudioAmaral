@@ -22,7 +22,7 @@ export default class CotacaoService {
     return array_result;
   }
 
-  async getCotacaoByName(id: string) {
+  async getCotacaoByCod(id: string) {
     console.log("CotacaoService: getCotacaoByName: " + id);
 
     let result: Cotacao = await this.repository.findByCod(id);

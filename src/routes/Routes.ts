@@ -9,8 +9,6 @@ export default class Routes {
   private _titulo: TituloRoute;
   private _middleware: Middleware;
  
-  
-
   constructor() {
     this._carteira = new CarteiraRoute();
     this._cotacao = new CotacaoRoute();

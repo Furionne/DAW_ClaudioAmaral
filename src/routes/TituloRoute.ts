@@ -12,7 +12,7 @@ export default class TituloRoute {
 
     app.post("/api/titulo", this.controller.post);
     app.get("/api/titulo", this.controller.get);
-    app.get("/api/titulo/:id", this.controller.getByName);
+    app.get("/api/titulo/:id", this.controller.getByCod);
     app.put("/api/titulo/:id", this.controller.put);
   }
 }

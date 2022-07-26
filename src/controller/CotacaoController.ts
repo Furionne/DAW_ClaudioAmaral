@@ -30,9 +30,9 @@ export default class CotacaoController {
     }
   };
 
-  getByName = async (req: Request, res: Response) => {
+  getByCod = async (req: Request, res: Response) => {
     try {
-      let result = await this.service.getCotacaoByName(req.params.id);
+      let result = await this.service.getCotacaoByCod(req.params.id);
       res.status(200).send(result);
     } catch (err) {
       res.status(500).send("Cotacao não encontrada na base de dados.");

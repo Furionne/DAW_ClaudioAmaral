@@ -4,9 +4,8 @@ const port = 2020;
 
 app.listen(port, () => {
     console.log(`=========================================`);
-    console.log(`Backend API running on port ${port}...`);
+    console.log(`Money is running on port ${port}...`);
 });
-
 
 
 

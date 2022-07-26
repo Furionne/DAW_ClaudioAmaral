@@ -23,7 +23,7 @@ export default class TituloService {
     return array_result;
   }
 
-  async getTituloByName(id: string) {
+  async getTituloByCod(id: string) {
     console.log("TituloService: getTituloByName: " + id);
 
     let result: Titulo = await this.repository.findByCod(id);

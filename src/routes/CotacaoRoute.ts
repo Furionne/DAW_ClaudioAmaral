@@ -12,7 +12,7 @@ export default class CotacaoRoute {
 
     app.post("/api/cotacao", this.controller.post);
     app.get("/api/cotacao", this.controller.get);
-    app.get("/api/cotacao/:id", this.controller.getByName);
+    app.get("/api/cotacao/:id", this.controller.getByCod);
     app.put("/api/cotacao/:id", this.controller.put);
   }
 }

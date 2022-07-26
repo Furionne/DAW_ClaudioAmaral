@@ -29,9 +29,9 @@ export default class CarteiraController {
     }
   };
 
-  getByName = async (req: Request, res: Response) => {
+  getByCod = async (req: Request, res: Response) => {
     try {
-      let result = await this.service.getCarteiraByName(req.params.id);
+      let result = await this.service.getCarteiraByCod(req.params.id);
       res.status(200).send(result);
     } catch (err) {
       res.status(500).send("Carteira não encontrada na base de dados.");

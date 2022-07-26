@@ -23,7 +23,7 @@ export  default class  CarteiraService {
     return array_result;
   }
 
-  async getCarteiraByName(id: string) {
+  async getCarteiraByCod(id: string) {
     console.log("CarteiraService: getCarteiraByName: " + id);
 
     let result: Carteira = await this.repository.findByCod(id);
