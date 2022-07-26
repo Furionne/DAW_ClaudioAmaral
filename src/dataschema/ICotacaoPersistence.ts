@@ -3,5 +3,5 @@ export default interface ICotacaoPersistence {
     designation: string;
     codTitulo: string;
     codCotacao: string;
-    value: number;
+    value: string;
 }

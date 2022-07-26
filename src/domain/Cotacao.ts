@@ -5,13 +5,13 @@ export default class Cotacao {
     codCotacao: string;
     codCarteira: string;
     designation: string;
-    value: number;
+    value: string;
 
   private constructor(
     codCotacao: string,
     designation: string,
     codCarteira: string,
-    value: number,
+    value: string,
   ) {
     this.codCotacao = codCotacao;
     this.designation = designation;
