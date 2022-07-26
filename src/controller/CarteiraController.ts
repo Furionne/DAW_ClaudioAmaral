@@ -22,14 +22,23 @@ export default class CarteiraController {
 
   get = async (req: Request, res: Response) => {
     try {
-      let result = await this.service.getAllRecomendacoes();
+      let result = await this.service.getAllCarteiras();
       res.status(200).send(result);
     } catch (err) {
       res.status(500).send("deu erro");
     }
   };
 
-  getByName = async (req: Request, res: Response) => {}
+  getByName = async (req: Request, res: Response) => {
+    try {
+      let result = await this.service.getCarteiraByName(req.params.id);
+      res.status(200).send(result);
+    } catch (err) {
+      res.status(500).send("Virus não encontrado na base de dados.");
+    }
+  };
+
+
 
   put = async (req: Request, res: Response) => {
     let carteiraDto: ICarteiraDTO = req.body;
