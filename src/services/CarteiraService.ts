@@ -26,7 +26,7 @@ export  default class  CarteiraService {
   async getCarteiraByName(id: string) {
     console.log("CarteiraService: getCarteiraByName: " + id);
 
-    let result: Carteira = await this.repository.findByName(id);
+    let result: Carteira = await this.repository.findByCod(id);
 
     return CarteiraMapper.toDTO(result);
   }
@@ -69,7 +69,7 @@ export  default class  CarteiraService {
   async deleteCarteira(id: string) {
     console.log("CarteiraService: deleteCarteira: " + id);
 
-    let result: boolean = await this.repository.deleteByName(id);
+    let result: boolean = await this.repository.deleteByCod(id);
 
     return result;
   }

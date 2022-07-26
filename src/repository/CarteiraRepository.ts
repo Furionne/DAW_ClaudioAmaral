@@ -31,7 +31,7 @@ export default class CarteiraRepository {
 
     let result: ICarteiraPersistence | null =
       await CarteiraSchema.findOneAndUpdate(
-        { codigo: umaCarteira.codigo },
+        { codigo: umaCarteira.codCarteira },
         umaCarteiraDoc
       );
 
@@ -51,20 +51,20 @@ export default class CarteiraRepository {
     return final_result;
   }
 
-  async findByName(id: string): Promise<any | null> {
+  async findByCod(id: string): Promise<any | null> {
     console.log("CarteiraRepository: findByName: " + JSON.stringify(id));
 
-    const result = await CarteiraSchema.findOne({ name: id });
+    const result = await CarteiraSchema.findOne({ codCarteira: id });
 
     if (result == null) return null;
 
     return CarteiraMapper.toDomain(result);
   }
 
-  async deleteByName(id: string): Promise<boolean> {
+  async deleteByCod(id: string): Promise<boolean> {
     console.log("CarteiraRepository: deleteByName: " + JSON.stringify(id));
 
-    const result: any = await CarteiraSchema.deleteOne({ name: id });
+    const result: any = await CarteiraSchema.deleteOne({ codCarteira: id });
 
     return result.acknowledged;
   }

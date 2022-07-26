@@ -26,7 +26,7 @@ export default class TituloService {
   async getTituloByName(id: string) {
     console.log("TituloService: getTituloByName: " + id);
 
-    let result: Titulo = await this.repository.findByName(id);
+    let result: Titulo = await this.repository.findByCod(id);
 
     return TituloMapper.toDTO(result);
   }
@@ -69,7 +69,7 @@ export default class TituloService {
   async deleteTitulo(id: string) {
     console.log("TituloService: deleteTitulo: " + id);
 
-    let result: boolean = await this.repository.deleteByName(id);
+    let result: boolean = await this.repository.deleteByCod(id);
 
     return result;
   }

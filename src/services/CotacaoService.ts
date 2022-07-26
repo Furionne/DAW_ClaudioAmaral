@@ -25,7 +25,7 @@ export default class CotacaoService {
   async getCotacaoByName(id: string) {
     console.log("CotacaoService: getCotacaoByName: " + id);
 
-    let result: Cotacao = await this.repository.findByName(id);
+    let result: Cotacao = await this.repository.findByCod(id);
 
     return CotacaoMapper.toDTO(result);
   }
@@ -68,7 +68,7 @@ export default class CotacaoService {
   async deleteCotacao(id: string) {
     console.log("CotacaoService: deleteCotacao: " + id);
 
-    let result: boolean = await this.repository.deleteByName(id);
+    let result: boolean = await this.repository.deleteByCod(id);
 
     return result;
   }

@@ -31,7 +31,7 @@ export default class CotacaoRepository {
 
     let result: ICotacaoPersistence | null =
       await CotacaoSchema.findOneAndUpdate(
-        { codigo: umaCotacao.codigo },
+        { codigo: umaCotacao.codCotacao },
         umaCotacaoDoc
       );
 
@@ -51,10 +51,10 @@ export default class CotacaoRepository {
     return final_result;
   }
 
-  async findByName(id: string): Promise<any | null> {
+  async findByCod(id: string): Promise<any | null> {
     console.log("CotacaoRepository: findByName: " + JSON.stringify(id));
 
-    const result = await CotacaoSchema.findOne({ name: id });
+    const result = await CotacaoSchema.findOne({ codCotacao: id });
 
     if (result == null) return null;
 
@@ -62,10 +62,10 @@ export default class CotacaoRepository {
   }
 
 
-  async deleteByName(id: string): Promise<boolean> {
+  async deleteByCod(id: string): Promise<boolean> {
     console.log("CotacaoRepository: deleteById: " + JSON.stringify(id));
 
-    const result: any = await CotacaoSchema.deleteOne({ name: id });
+    const result: any = await CotacaoSchema.deleteOne({ codCotacao: id });
 
     return result.acknowledged;
   }
