@@ -8,21 +8,19 @@ export default {
   toDTO(cotacao: Cotacao | null): ICotacaoDTO | null {
     if (cotacao == null) return null;
     return {
-      codigo: cotacao.codigo,
-      zona: cotacao.zona,
-      dataNota: cotacao.dataNota,
-      validadeNota: cotacao.validadeNota,
-      descricao: cotacao.descricao,
+        codCotacao: cotacao.codCotacao,
+        designation: cotacao.designation,
+        codCarteira: cotacao.codCarteira,
+        value: cotacao.value,
     } as ICotacaoDTO;
   },
 
   toPersistence(cotacao: Cotacao): any {
     return {
-      codigo: cotacao.codigo,
-      zona: cotacao.zona,
-      dataNota: cotacao.dataNota,
-      validadeNota: cotacao.validadeNota,
-      descricao: cotacao.descricao,
+        codCotacao: cotacao.codCotacao,
+        designation: cotacao.designation,
+        codCarteira: cotacao.codCarteira,
+        value: cotacao.value,
     };
   },
 

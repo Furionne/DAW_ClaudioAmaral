@@ -8,21 +8,17 @@ export default {
   toDTO(titulo: Titulo | null): ITituloDTO | null {
     if (titulo == null) return null;
     return {
-      codigo: titulo.codigo,
-      zona: titulo.zona,
-      dataNota: titulo.dataNota,
-      validadeNota: titulo.validadeNota,
-      descricao: titulo.descricao,
+        codTitulo: titulo.codTitulo,
+        designation: titulo.designation,
+        codCarteira: titulo.codCarteira,
     } as ITituloDTO;
   },
 
   toPersistence(titulo: Titulo): any {
     return {
-      codigo: titulo.codigo,
-      zona: titulo.zona,
-      dataNota: titulo.dataNota,
-      validadeNota: titulo.validadeNota,
-      descricao: titulo.descricao,
+        codTitulo: titulo.codTitulo,
+        designation: titulo.designation,
+        codCarteira: titulo.codCarteira,
     };
   },
 

@@ -8,21 +8,23 @@ export default {
   toDTO(carteira: Carteira | null): ICarteiraDTO | null {
     if (carteira == null) return null;
     return {
-      codigo: carteira.codigo,
-      zona: carteira.zona,
-      dataNota: carteira.dataNota,
-      validadeNota: carteira.validadeNota,
-      descricao: carteira.descricao,
+
+      codCarteira: carteira.codCarteira,
+      designation: carteira.designation,
+      codTitulo: carteira.codTitulo,
+      codCotacao: carteira.codCotacao,
+
+
+
     } as ICarteiraDTO;
   },
 
   toPersistence(carteira: Carteira): any {
     return {
-      codigo: carteira.codigo,
-      zona: carteira.zona,
-      dataNota: carteira.dataNota,
-      validadeNota: carteira.validadeNota,
-      descricao: carteira.descricao,
+        codCarteira: carteira.codCarteira,
+        designation: carteira.designation,
+        codTitulo: carteira.codTitulo,
+        codCotacao: carteira.codCotacao,
     };
   },
 
