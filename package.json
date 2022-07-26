@@ -1,0 +1,21 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "projeto de avaliação",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Furionne/DAW_ClaudioAmaral.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Furionne/DAW_ClaudioAmaral/issues"
+  },
+  "homepage": "https://github.com/Furionne/DAW_ClaudioAmaral#readme"
+}
