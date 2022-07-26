@@ -2,7 +2,6 @@ import ICarteiraPersistence from "../dataschema/ICarteiraPersistence";
 import ICarteiraDTO from "../dto/ICarteiraDTO";
 import Carteira from "../domain/Carteira";
 
-//inicialmente isto estava implementado como class com metodos estaticos....
 
 export default {
   toDTO(carteira: Carteira | null): ICarteiraDTO | null {

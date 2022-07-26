@@ -2,7 +2,6 @@ import ITituloPersistence from "../dataschema/ITituloPersistence";
 import ITituloDTO from "../dto/ITituloDTO";
 import Titulo from "../domain/Titulo";
 
-//inicialmente isto estava implementado como class com metodos estaticos....
 
 export default {
   toDTO(titulo: Titulo | null): ITituloDTO | null {

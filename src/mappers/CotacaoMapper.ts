@@ -2,7 +2,6 @@ import ICotacaoPersistence from "../dataschema/ICotacaoPersistence";
 import ICotacaoDTO from "../dto/ICotacaoDTO";
 import Cotacao from "../domain/Cotacao";
 
-//inicialmente isto estava implementado como class com metodos estaticos....
 
 export default {
   toDTO(cotacao: Cotacao | null): ICotacaoDTO | null {
