@@ -1,5 +1,5 @@
 import { Router } from "express";
-import CarteiraController from "../controllers/CarteiraController";
+import CarteiraController from "../controller/CarteiraController";
 
 export default class CarteiraRoute {
   private controller: CarteiraController;
@@ -11,11 +11,11 @@ export default class CarteiraRoute {
   routes(app: Router) {
 
     app.post("/api/carteira", this.controller.post);
+    app.get("/api/carteira", this.controller.get);
+    app.get("/api/carteira/:id", this.controller.getByName);
     app.put("/api/carteira/:id", this.controller.put);
-    app.get("/api/carteira", this.controller.getAll);
     app.delete("/api/carteira/:id", this.controller.delete);
-    app.get("/api/carteira/:id", this.controller.getById);
-    app.get("/api/carteira/:id/surtos", this.controller.getAllSurtos);
+    
   }
 }
 

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import CotacaoController from "../controllers/CotacaoController";
+import CotacaoController from "../controller/CotacaoController";
 
 export default class CotacaoRoute {
   private controller: CotacaoController;
@@ -11,11 +11,9 @@ export default class CotacaoRoute {
   routes(app: Router) {
 
     app.post("/api/cotacao", this.controller.post);
+    app.get("/api/cotacao", this.controller.get);
+    app.get("/api/cotacao/:id", this.controller.getByName);
     app.put("/api/cotacao/:id", this.controller.put);
-    app.get("/api/cotacao", this.controller.getAll);
-    app.delete("/api/cotacao/:id", this.controller.delete);
-    app.get("/api/cotacao/:id", this.controller.getById);
-    app.get("/api/cotacao/:id/surtos", this.controller.getAllSurtos);
   }
 }
 

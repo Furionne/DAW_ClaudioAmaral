@@ -20,6 +20,19 @@ export default class TituloController {
     }
   };
 
+  
+    get = async (req: Request, res: Response) => {
+      try {
+        let result = await this.service.getAllRecomendacoes();
+        res.status(200).send(result);
+      } catch (err) {
+        res.status(500).send("deu erro");
+      }
+    };
+
+    getByName = async (req: Request, res: Response) => {}
+    
+
   put = async (req: Request, res: Response) => {
     let tituloDto: ITituloDTO = req.body;
 
@@ -31,24 +44,4 @@ export default class TituloController {
       res.status(500).send("Erro a aceder base de dados.");
     }
   };
-
-  delete = async (req: Request, res: Response) => {
-    try {
-      let result: boolean = await this.service.deleteTitulo(req.params.id);
-      res.status(200).send(result);
-    } catch (err) {
-      res.status(500).send("Erro ao apagar titulo.");
-    }
-  };
-
-  get = async (req: Request, res: Response) => {
-    try {
-      let result = await this.service.getAllRecomendacoes();
-      res.status(200).send(result);
-    } catch (err) {
-      res.status(500).send("deu erro");
-    }
-  };
-
-
 }

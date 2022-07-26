@@ -1,5 +1,5 @@
 import { Router } from "express";
-import TituloController from "../controllers/TituloController";
+import TituloController from "../controller/TituloController";
 
 export default class TituloRoute {
   private controller: TituloController;
@@ -11,11 +11,9 @@ export default class TituloRoute {
   routes(app: Router) {
 
     app.post("/api/titulo", this.controller.post);
+    app.get("/api/titulo", this.controller.get);
+    app.get("/api/titulo/:id", this.controller.getByName);
     app.put("/api/titulo/:id", this.controller.put);
-    app.get("/api/titulo", this.controller.getAll);
-    app.delete("/api/titulo/:id", this.controller.delete);
-    app.get("/api/titulo/:id", this.controller.getById);
-    app.get("/api/titulo/:id/surtos", this.controller.getAllSurtos);
   }
 }
 

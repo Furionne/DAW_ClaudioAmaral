@@ -20,6 +20,18 @@ export default class CotacaoController {
     }
   };
 
+
+  get = async (req: Request, res: Response) => {
+    try {
+      let result = await this.service.getAllRecomendacoes();
+      res.status(200).send(result);
+    } catch (err) {
+      res.status(500).send("deu erro");
+    }
+  };
+
+  getByName = async (req: Request, res: Response) => {}
+
   put = async (req: Request, res: Response) => {
     let cotacaoDto: ICotacaoDTO = req.body;
 
@@ -32,23 +44,7 @@ export default class CotacaoController {
     }
   };
 
-  delete = async (req: Request, res: Response) => {
-    try {
-      let result: boolean = await this.service.deleteCotacao(req.params.id);
-      res.status(200).send(result);
-    } catch (err) {
-      res.status(500).send("Erro ao apagar cotacao.");
-    }
-  };
 
-  get = async (req: Request, res: Response) => {
-    try {
-      let result = await this.service.getAllRecomendacoes();
-      res.status(200).send(result);
-    } catch (err) {
-      res.status(500).send("deu erro");
-    }
-  };
 
 
 }
