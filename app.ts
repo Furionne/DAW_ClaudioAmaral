@@ -12,7 +12,9 @@ export class App {
     this.config();
     this.mongoSetup();
     this.routes.middleware.routes(this.app);
-    this.routes.livro.routes(this.app);
+    this.routes.carteira.routes(this.app);
+    this.routes.cotacao.routes(this.app);
+    this.routes.titulo.routes(this.app);
   }
 
   private config(): void {
