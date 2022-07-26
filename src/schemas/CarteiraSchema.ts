@@ -3,17 +3,10 @@ import ICarteiraPersistence from "../dataschema/ICarteiraPersistence";
 
 const CarteiraSchema = new mongoose.Schema(
   {
-    codigo: {
-      type: String,
-      minLength: 3,
-      maxLength: 3,
-      required: true,
-      unique: true,
-    },
-    zona: { type: String, minLength: 3, maxLength: 4, required: true },
-    dataNota: { type: Date, required: true },
-    validadeNota: { type: Number, required: true },
-    descricao: { type: String, required: true },
+    codCarteira: {type: String, required: true, unique: true},
+    designation: { type: String, required: true },
+    codTitulo: { type: Date, required: true },
+    codCotacao: { type: String, required: true },
   },
   {
     timestamps: true,

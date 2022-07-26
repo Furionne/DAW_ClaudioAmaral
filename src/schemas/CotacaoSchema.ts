@@ -3,17 +3,10 @@ import ICotacaoPersistence from "../dataschema/ICotacaoPersistence";
 
 const CotacaoSchema = new mongoose.Schema(
   {
-    codigo: {
-      type: String,
-      minLength: 3,
-      maxLength: 3,
-      required: true,
-      unique: true,
-    },
-    zona: { type: String, minLength: 3, maxLength: 4, required: true },
-    dataNota: { type: Date, required: true },
-    validadeNota: { type: Number, required: true },
-    descricao: { type: String, required: true },
+    codCotacao: {type: String, required: true,unique: true},
+    designation: { type: String, minLength: 3 },
+    codTitulo: { type: String, required: true },
+    value: { type: Number, required: true },
   },
   {
     timestamps: true,

@@ -1,6 +1,6 @@
 import CotacaoService from "../services/CotacaoService";
-import { Request, Response } from "express";
 import ICotacaoDTO from "../dto/ICotacaoDTO";
+import { Request, Response } from "express";
 
 export default class CotacaoController {
   private service: CotacaoService;
