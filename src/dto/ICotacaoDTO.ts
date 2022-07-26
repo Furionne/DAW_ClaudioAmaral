@@ -1,7 +1,6 @@
 export default interface ICotacaoDTO {
-    codigo: string;
-    zona: string;
-    dataNota: Date;
-    validadeNota: Date;
-    descricao: string;
+    codCotacao: string;
+    codCarteira: string;
+    designation: string;
+    value: number;
 }

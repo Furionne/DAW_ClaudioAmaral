@@ -2,35 +2,31 @@ import ICotacaoDTO from "../dto/ICotacaoDTO";
 import ICotacaoPersistence from "../dataschema/ICotacaoPersistence";
 
 export default class Cotacao {
-  codigo: string;
-  zona: string;
-  dataNota: Date;
-  validadeNota: Date;
-  descricao: string;
+    codCotacao: string;
+    codCarteira: string;
+    designation: string;
+    value: number;
 
   private constructor(
-    codigo: string,
-    zona: string,
-    dataNota: Date,
-    validadeNota: Date,
-    descricao: string
+    codCotacao: string,
+    designation: string,
+    codCarteira: string,
+    value: number,
   ) {
-    this.codigo = codigo;
-    this.zona = zona;
-    this.dataNota = dataNota;
-    this.validadeNota = validadeNota;
-    this.descricao = descricao;
+    this.codCotacao = codCotacao;
+    this.designation = designation;
+    this.codCarteira = codCarteira;
+    this.value = value;
   }
 
   public static create(
     cotacao: ICotacaoDTO | ICotacaoPersistence
   ): Cotacao {
     return new Cotacao(
-      cotacao.codigo,
-      cotacao.zona,
-      cotacao.dataNota,
-      cotacao.validadeNota,
-      cotacao.descricao
+        cotacao.codCotacao,
+        cotacao.designation,
+      cotacao.codCarteira,
+      cotacao.value,
     );
   }
 }

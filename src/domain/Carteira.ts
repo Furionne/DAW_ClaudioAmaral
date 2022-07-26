@@ -2,35 +2,33 @@ import ICarteiraDTO from "../dto/ICarteiraDTO";
 import ICarteiraPersistence from "../dataschema/ICarteiraPersistence";
 
 export default class Carteira {
-  codigo: string;
-  zona: string;
-  dataNota: Date;
-  validadeNota: Date;
-  descricao: string;
+    codCarteira: string;
+    designation: string;
+    codTitulo: string;
+    codCotacao: string;
+
 
   private constructor(
-    codigo: string,
-    zona: string,
-    dataNota: Date,
-    validadeNota: Date,
-    descricao: string
+    codCarteira: string,
+    designation: string,
+    codTitulo: string,
+    codCotacao: string,
+
   ) {
-    this.codigo = codigo;
-    this.zona = zona;
-    this.dataNota = dataNota;
-    this.validadeNota = validadeNota;
-    this.descricao = descricao;
+    this.codCarteira = codCarteira;
+    this.designation = designation;
+    this.codTitulo = codTitulo;
+    this.codCotacao = codCotacao;
   }
 
   public static create(
     carteira: ICarteiraDTO | ICarteiraPersistence
   ): Carteira {
     return new Carteira(
-      carteira.codigo,
-      carteira.zona,
-      carteira.dataNota,
-      carteira.validadeNota,
-      carteira.descricao
+      carteira.codCarteira,
+      carteira.designation,
+      carteira.codTitulo,
+      carteira.codCotacao,
     );
   }
 }

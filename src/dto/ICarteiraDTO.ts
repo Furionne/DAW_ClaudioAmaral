@@ -1,7 +1,6 @@
 export default interface ICarteiraDTO {
-    codigo: string;
-    zona: string;
-    dataNota: Date;
-    validadeNota: Date;
-    descricao: string;
+    codCarteira: string;
+    designation: string;
+    codTitulo: string;
+    codCotacao: string;
 }
