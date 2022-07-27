@@ -1,0 +1,43 @@
+<div class="list row">
+  <div class="col-md-8">
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search by codCarteira"
+        [(ngModel)]="currentCarteira.codCarteira"
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          (click)="searchCodCarteira(currentCarteira.codCarteira)"
+        >
+          Search
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <h4>Carteiras List</h4>
+    <ul class="list-group">
+      <li
+        class="list-group-item"
+        *ngFor="let carteira of carteiras; let i = index"
+        [class.active]="i == currentIndex"
+        (click)="setActiveCarteira(carteira, i)"
+      >
+        {{ carteira.codCarteira }}
+      </li>
+    </ul>
+    <button class="m-3 btn btn-sm btn-danger" (click)="removeAllCarteiras()">
+      Remove All
+    </button>
+  </div>
+  <div class="col-md-6">
+    <app-carteira-details
+      [viewMode]="true"
+      [currentCarteira]="currentCarteira"
+    ></app-carteira-details>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<div class="list row">
+  <div class="col-md-8">
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search by codTitulo"
+        [(ngModel)]="currentTitulo.codTitulo"
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          (click)="searchCodTitulo(currentTitulo.codTitulo)"
+        >
+          Search
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <h4>Titulos List</h4>
+    <ul class="list-group">
+      <li
+        class="list-group-item"
+        *ngFor="let titulo of titulos; let i = index"
+        [class.active]="i == currentIndex"
+        (click)="setActiveTitulo(titulo, i)"
+      >
+        {{ titulo.codTitulo }}
+      </li>
+    </ul>
+    <button class="m-3 btn btn-sm btn-danger" (click)="removeAllTitulos()">
+      Remove All
+    </button>
+  </div>
+  <div class="col-md-6">
+    <app-titulo-details
+      [viewMode]="true"
+      [currentTitulo]="currentTitulo"
+    ></app-titulo-details>
+  </div>
+</div>

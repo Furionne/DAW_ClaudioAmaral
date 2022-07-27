@@ -1,0 +1,31 @@
+<router-outlet></router-outlet>
+<div>
+  <nav class="navbar navbar-expand navbar-dark bg-dark">
+    <a href="#" class="navbar-brand">Dashboard</a>
+    <div class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a routerLink="carteiras" class="nav-link">Carteiras</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="add" class="nav-link">AddCarteira</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="titulos" class="nav-link">Títulos</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="cotacoes" class="nav-link">Cotações</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="login" class="nav-link">Login</a>
+      </li>
+    </div>
+  </nav>
+  <div class="container mt-3"></div>
+</div>
+<app-main-container></app-main-container>
+
+<ul class="list-group">
+  <li *ngFor="let post of posts" class="list-group-item">
+    {{ post.title }}
+  </li>
+</ul>
