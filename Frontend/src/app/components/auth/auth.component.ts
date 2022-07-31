@@ -7,12 +7,12 @@ import { AuthService, AuthResponseData } from './auth.service';
 
 @Component({
   selector: 'app-auth',
-  templateUrl: './auth.component.html'
+  templateUrl: './auth.component.html',
 })
 export class AuthComponent {
   isLoginMode = true;
   isLoading = false;
-  error: string = null;
+  error: string | null = null;
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -38,12 +38,12 @@ export class AuthComponent {
     }
 
     authObs.subscribe(
-      resData => {
+      (resData) => {
         console.log(resData);
         this.isLoading = false;
         this.router.navigate(['/recipes']);
       },
-      errorMessage => {
+      (errorMessage) => {
         console.log(errorMessage);
         this.error = errorMessage;
         this.isLoading = false;
