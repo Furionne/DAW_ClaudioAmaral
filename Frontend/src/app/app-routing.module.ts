@@ -10,16 +10,16 @@ import { TitulosComponent } from './entidades/titulos/titulos.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'carteiras', component: CarteiraListComponent },
-  { path: 'carteiras/:id', component: CarteiraDetailsComponent},
-  { path: 'add', component: AddCarteiraComponent},
-  { path: 'cotacoes', component: CotacoesComponent},
-  { path: 'titulos', component: TitulosComponent},
-  {path: 'login', component: LoginComponent}
+  { path: 'carteiras', component: CarteirasComponent },
+  { path: 'carteiras/:id', component: CarteiraDetailsComponent },
+  { path: 'add', component: AddCarteiraComponent },
+  { path: 'cotacoes', component: CotacoesComponent },
+  { path: 'titulos', component: TitulosComponent },
+  { path: 'login', component: LoginComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
