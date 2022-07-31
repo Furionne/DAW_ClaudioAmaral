@@ -34,6 +34,8 @@ import { TituloListComponent } from './components/titulo-list/titulo-list.compon
 import { AddTituloComponent } from './components/add-titulo/add-titulo.component';
 import { TituloDetailsComponent } from './components/titulo-details/titulo-details.component';
 import { MainContainerComponent } from './components/main-container/main-container.component';
+import { TableComponent } from './components/table/table.component';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,7 @@ import { MainContainerComponent } from './components/main-container/main-contain
     AddTituloComponent,
     TituloDetailsComponent,
     MainContainerComponent,
+    TableComponent,
   ],
   imports: [
     BrowserModule,
@@ -74,6 +77,7 @@ import { MainContainerComponent } from './components/main-container/main-contain
     FlexLayoutModule,
     MatFormFieldModule,
     MatInputModule,
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
