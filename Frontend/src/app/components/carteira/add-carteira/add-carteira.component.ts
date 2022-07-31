@@ -26,7 +26,7 @@ export class AddCarteiraComponent implements OnInit {
     });
   }
   newCarteira(): void {
-    this.submitted = false;
+    this.submitted = true;
     this.carteira = {
       codCarteira: '',
       designation: '',

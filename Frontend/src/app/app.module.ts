@@ -40,7 +40,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { Card2Component } from './components/card2/card2.component';
 import { Card3Component } from './components/card3/card3.component';
-import { Card4Component } from './components/card4/card4.component';
+import { Card4Component } from './components/card4/card.component';
 import { Card5Component } from './components/card5/card5.component';
 import { MenuCenter2Component } from './components/menu-center2/menu-center2.component';
 import { MenuCenter3Component } from './components/menu-center3/menu-center3.component';
