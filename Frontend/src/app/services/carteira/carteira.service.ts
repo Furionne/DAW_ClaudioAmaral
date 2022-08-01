@@ -16,15 +16,6 @@ export class CarteiraService {
       .pipe(catchError(this.handleError<Carteira[]>('getCarteiras', [])));
   }
 
-  // getCarteira(codCarteira: string): Observable<Carteira> {
-  //   const url = `${baseUrl}/${codCarteira}`;
-  //   return this.http.get<Carteira>(url).pipe(
-  //     tap((_) => this.log()(`fetched carteira codCarteira=${codCarteira}`)),
-  //     catchError(
-  //       this.handleError<Carteira>(`getCarteira codCarteira=${codCarteira}`)
-  //     )
-  //   );
-
   get(codCarteira: string): Observable<any> {
     return this.http.get(`${baseUrl}/${codCarteira}`);
   }
