@@ -16,6 +16,7 @@ export class App {
     this.routes.carteira.routes(this.app);
     this.routes.cotacao.routes(this.app);
     this.routes.titulo.routes(this.app);
+    this.routes.user.routes(this.app);
   }
 
   private config(): void {
