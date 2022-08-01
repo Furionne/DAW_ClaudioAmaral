@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Carteira } from 'app/models/carteira.model';
 import { CarteiraService } from 'app/services/carteira/carteira.service';
+import { Observable } from 'rxjs';
 
 /**
  * @title Binding event handlers and properties to the table rows.
@@ -24,6 +26,10 @@ export class CarteiraListComponent {
     'codTitulo',
     'codCotacao',
   ];
+  carteira: any;
+  selectedCarteira: boolean = false;
+
+  formCarteira = new Carteira();
   // clickedRows = new Set<CarteiraList>();
   constructor(private carteiraService: CarteiraService) {}
 
@@ -37,17 +43,53 @@ export class CarteiraListComponent {
     });
   }
 
-  createRecipe() {
-    this.dialog.open(RecipeCreateComponent, {});
+  selectCarteira(carteira: Carteira) {
+    if (
+      this.selectedCarteira &&
+      this.formCarteira.codCarteira === carteira.codCarteira
+    ) {
+      this.selectedCarteira = false;
+      this.formCarteira = new Carteira();
+    } else {
+      this.selectedCarteira = true;
+      this.formCarteira = { ...carteira };
+    }
   }
 
-  // addCarteira(carteira: Carteira) {
-  //   this.carteiraService.create(carteira).subscribe({
-  //     next: (res) => {
-  //       console.log(res);
-  //       this.submitted = true;
-  //     },
-  //     error: (e) => console.error(e),
-  //   });
-  // }
+  add(codCarteira: string): void {
+    codCarteira = codCarteira.trim();
+    if (!codCarteira) {
+      return;
+    }
+    this.carteiraService
+      .addCarteira({ codCarteira } as Carteira)
+      .subscribe((carteira) => {
+        this.carteira.push(carteira);
+      });
+  }
+
+  delete(carteira: Carteira): void {
+    this.carteiraService
+      .deleteCarteira(carteira.codCarteira)
+      .subscribe((res) => {
+        this.getCarteiras();
+      });
+  }
+
+  onSubmit(f: NgForm) {
+    if (f.valid && this.formCarteira.codCarteira) {
+      console.log(this.formCarteira);
+      let obs: Observable<Carteira>;
+      if (this.selectedCarteira) {
+        obs = this.carteiraService.updateCarteira(this.formCarteira);
+      } else {
+        obs = this.carteiraService.addCarteira(this.formCarteira);
+      }
+
+      obs.subscribe((res) => {
+        this.getCarteiras();
+        f.reset();
+      });
+    }
+  }
 }

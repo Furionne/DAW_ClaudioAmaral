@@ -10,74 +10,23 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./carteira-details.component.css'],
 })
 export class CarteiraDetailsComponent implements OnInit {
-  @Input() viewMode = true;
-  @Input() currentCarteira: Carteira = {
-    codCarteira: '',
-    designation: '',
-    codTitulo: '',
-    codCotacao: '',
-  };
-  message = '';
+      
 
   constructor(
     private carteiraService: CarteiraService,
     private route: ActivatedRoute,
-    private router: Router
+    private location: Location
   ) {}
 
   ngOnInit(): void {
-    if (!this.viewMode) {
-      this.message = '';
-      this.getCarteira(this.route.snapshot.params['codCarteira']);
+      this.getCarteira();
     }
   }
-  getCarteira(codCarteira: string): void {
-    this.carteiraService.get(codCarteira).subscribe({
-      next: (data) => {
-        this.currentCarteira = data;
-        console.log(data);
-      },
-      error: (e) => console.error(e),
-    });
-  }
-  updatePublished(): void {
-    const data = {
-      codCarteira: this.currentCarteira.codCarteira,
-      designation: this.currentCarteira.designation,
-      codTitulo: this.currentCarteira.codTitulo,
-      codCotacao: this.currentCarteira.codCotacao,
-    };
-    this.message = '';
-    this.carteiraService.update(data).subscribe({
-      next: (res) => {
-        console.log(res);
-        this.currentCarteira = res;
-        this.message = res.message
-          ? res.message
-          : 'The status was updated successfully!';
-      },
-      error: (e) => console.error(e),
-    });
-  }
-  updateCarteira(): void {
-    this.message = '';
-    this.carteiraService.update(this.currentCarteira).subscribe({
-      next: (res) => {
-        console.log(res);
-        this.message = res.message
-          ? res.message
-          : 'This carteira was updated successfully!';
-      },
-      error: (e) => console.error(e),
-    });
-  }
-  deleteCarteira(): void {
-    this.carteiraService.delete(this.currentCarteira.codCarteira).subscribe({
-      next: (res) => {
-        console.log(res);
-        this.router.navigate(['/carteiras']);
-      },
-      error: (e) => console.error(e),
-    });
-  }
+  
+ getCarteira(): void {
+  const codCarteira = parseInt(this.route.snapshot.paramMap.get('codCarteira')!);
+    this.carteiraService.getCarteira(codCarteira)
+      .subscribe(carteira => this.carteira = carteira);
+  
 }
+

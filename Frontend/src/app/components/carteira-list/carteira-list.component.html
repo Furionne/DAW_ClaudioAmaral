@@ -31,5 +31,31 @@
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  <tr
+    mat-row
+    *matRowDef="let row; columns: displayedColumns"
+    (click)="selectCarteira(row)"
+  ></tr>
 </table>
+{{ formCarteira | json }}
+<form #form="ngForm" (ngSubmit)="onSubmit(form)">
+  <input [(ngModel)]="formCarteira.codCarteira" name="codCateira" type="text" />
+  <input
+    [(ngModel)]="formCarteira.designation"
+    name="designation"
+    type="text"
+  />
+  <input [(ngModel)]="formCarteira.codTitulo" name="codTitulo" type="text" />
+  <input [(ngModel)]="formCarteira.codCotacao" name="codCotacao" type="text" />
+  <button mat-raised-button type="submit">
+    {{ selectedCarteira ? "Edit" : "Add" }}
+  </button>
+  <button
+    *ngIf="selectedCarteira"
+    type="button"
+    mat-raised-button
+    (click)="delete(formCarteira)"
+  >
+    Delete
+  </button>
+</form>

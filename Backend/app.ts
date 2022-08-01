@@ -7,7 +7,7 @@ export class App {
   public app: express.Application = express();
   public routes: Routes = new Routes();
   public mongoUrl: string =
-    "mongodb+srv://claudio:jesuisclaude@cluster0.wvfs7g9.mongodb.net/test";
+    "mongodb+srv://claudio:jesuisclaude@cluster0.wvfs7g9.mongodb.net/test235";
 
   constructor() {
     this.config();

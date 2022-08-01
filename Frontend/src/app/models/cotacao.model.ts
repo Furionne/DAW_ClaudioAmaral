@@ -1,6 +1,6 @@
-export interface Cotacao {
-    codCotacao: string;
-    codCarteira: string;
-    designation: string;
-    value: string;
+export class Cotacao {
+  public codCotacao: string = '';
+  public codCarteira: string = '';
+  public designation: string = '';
+  public value: string = '';
 }

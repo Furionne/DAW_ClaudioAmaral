@@ -1,68 +1,93 @@
 import { Component, OnInit } from '@angular/core';
-import { Cotacao } from '../../models/cotacao.model';
-import { CotacaoService } from '../../services/cotacao/cotacao.service';
+import { NgForm } from '@angular/forms';
+import { Cotacao } from 'app/models/cotacao.model';
+import { CotacaoService } from 'app/services/cotacao/cotacao.service';
+import { Observable } from 'rxjs';
+
+/**
+ * @title Binding event handlers and properties to the table rows.
+ */
 @Component({
   selector: 'app-cotacao-list',
+  styleUrls: ['./cotacao-list.component.css'],
   templateUrl: './cotacao-list.component.html',
-  styleUrls: ['./cotacao-list.component.css']
 })
-export class CotacaoListComponent implements OnInit {
-  cotacaos?: Cotacao[];
-  currentCotacao: Cotacao = {
-    codCotacao: '',
-    designation: '',
-    codCarteira: '',
-    value: ''
-  };
-  currentIndex = -1;
-  title = '';
-  constructor(private cotacaoService: CotacaoService) { }
+export class CotacaoListComponent {
+  cotacaoList: Cotacao[] = [];
+  columnsToDisplay: string[] = [
+    'codCotacao',
+    'codCarteira',
+    'designation',
+    'value',
+  ];
+  displayedColumns: string[] = [
+    'codCotacao',
+    'codCarteira',
+    'designation',
+    'value',
+  ];
+  cotacao: any;
+  selectedCotacao: boolean = false;
+
+  formCotacao = new Cotacao();
+  // clickedRows = new Set<CotacaoList>();
+  constructor(private cotacaoService: CotacaoService) {}
+
   ngOnInit(): void {
-    this.retrieveCotacaos();
+    this.getCotacaos();
   }
-  retrieveCotacaos(): void {
-    this.cotacaoService.getAll()
-      .subscribe({
-        next: (data) => {
-          this.cotacaos = data;
-          console.log(data);
-        },
-        error: (e) => console.error(e)
+
+  getCotacaos(): void {
+    this.cotacaoService.getCotacaos().subscribe((cotacao: any) => {
+      this.cotacaoList = cotacao;
+    });
+  }
+
+  selectCotacao(cotacao: Cotacao) {
+    if (
+      this.selectedCotacao &&
+      this.formCotacao.codCotacao === cotacao.codCotacao
+    ) {
+      this.selectedCotacao = false;
+      this.formCotacao = new Cotacao();
+    } else {
+      this.selectedCotacao = true;
+      this.formCotacao = { ...cotacao };
+    }
+  }
+
+  add(codCotacao: string): void {
+    codCotacao = codCotacao.trim();
+    if (!codCotacao) {
+      return;
+    }
+    this.cotacaoService
+      .addCotacao({ codCotacao } as Cotacao)
+      .subscribe((cotacao) => {
+        this.cotacao.push(cotacao);
       });
   }
-  refreshList(): void {
-    this.retrieveCotacaos();
-    this.currentCotacao = {
-      codCotacao: '',
-      designation: '',
-      codCarteira: '',
-      value: ''
-    };
-    this.currentIndex = -1;
+
+  delete(cotacao: Cotacao): void {
+    this.cotacaoService.deleteCotacao(cotacao.codCotacao).subscribe((res) => {
+      this.getCotacaos();
+    });
   }
-  setActiveCotacao(cotacao: Cotacao, index: number): void {
-    this.currentCotacao = cotacao;
-    this.currentIndex = index;
-  }
-  removeAllCotacao(): void {
-    this.cotacaoService.deleteAll()
-      .subscribe({
-        next: (res) => {
-          console.log(res);
-          this.refreshList();
-        },
-        error: (e) => console.error(e)
+
+  onSubmit(f: NgForm) {
+    if (f.valid && this.formCotacao.codCotacao) {
+      console.log(this.formCotacao);
+      let obs: Observable<Cotacao>;
+      if (this.selectedCotacao) {
+        obs = this.cotacaoService.updateCotacao(this.formCotacao);
+      } else {
+        obs = this.cotacaoService.addCotacao(this.formCotacao);
+      }
+
+      obs.subscribe((res) => {
+        this.getCotacaos();
+        f.reset();
       });
-  }
-  searchCodCotacao(codCotacao: string): void {
-    this.currentIndex = -1;
-    this.cotacaoService.get(codCotacao)
-      .subscribe({
-        next: (data: Cotacao[] | undefined) => {
-          this.cotacaos = data;
-          console.log(data);
-        },
-        error: (e: any) => console.error(e)
-      });
+    }
   }
 }

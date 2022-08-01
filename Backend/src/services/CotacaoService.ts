@@ -64,7 +64,6 @@ export default class CotacaoService {
   }
 
 
-
   async deleteCotacao(id: string) {
     console.log("CotacaoService: deleteCotacao: " + id);
 

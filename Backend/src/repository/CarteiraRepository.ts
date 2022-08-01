@@ -7,9 +7,7 @@ export default class CarteiraRepository {
   constructor() {}
 
   async save(umaCarteira: Carteira): Promise<Carteira> {
-    console.log(
-      "CarteiraRepository: save: " + JSON.stringify(umaCarteira)
-    );
+    console.log("CarteiraRepository: save: " + JSON.stringify(umaCarteira));
 
     let umaCarteiraDoc: ICarteiraPersistence =
       CarteiraMapper.toPersistence(umaCarteira);
@@ -22,18 +20,15 @@ export default class CarteiraRepository {
   }
 
   async update(umaCarteira: Carteira): Promise<any> {
-    console.log(
-      "CarteiraRepository: save: " + JSON.stringify(umaCarteira)
-    );
+    console.log("CarteiraRepository: save: " + JSON.stringify(umaCarteira));
 
-    let umaCarteiraDoc: ICarteiraPersistence =
+    let { codCarteira, ...update }: ICarteiraPersistence =
       CarteiraMapper.toPersistence(umaCarteira);
 
     let result: ICarteiraPersistence | null =
-      await CarteiraSchema.findOneAndUpdate(
-        { codigo: umaCarteira.codCarteira },
-        umaCarteiraDoc
-      );
+      await CarteiraSchema.findOneAndUpdate({ codCarteira }, update, {
+        new: true,
+      });
 
     if (result == null) return "Recomendação inexistente.";
     return CarteiraMapper.toDomain(result);
@@ -42,9 +37,7 @@ export default class CarteiraRepository {
   async findAll(): Promise<any> {
     console.log("CarteiraRepository: findAll ");
 
-    const result: ICarteiraPersistence[] = await CarteiraSchema.find(
-      {}
-    );
+    const result: ICarteiraPersistence[] = await CarteiraSchema.find({});
 
     let final_result = result.map((x) => CarteiraMapper.toDomain(x));
 

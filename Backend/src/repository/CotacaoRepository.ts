@@ -7,31 +7,25 @@ export default class CotacaoRepository {
   constructor() {}
 
   async save(umaCotacao: Cotacao): Promise<Cotacao> {
-    console.log(
-      "CotacaoRepository: save: " + JSON.stringify(umaCotacao)
-    );
+    console.log("CotacaoRepository: save: " + JSON.stringify(umaCotacao));
 
     let umaCotacaoDoc: ICotacaoPersistence =
       CotacaoMapper.toPersistence(umaCotacao);
 
-    let result: ICotacaoPersistence = await CotacaoSchema.create(
-      umaCotacaoDoc
-    );
+    let result: ICotacaoPersistence = await CotacaoSchema.create(umaCotacaoDoc);
 
     return CotacaoMapper.toDomain(result);
   }
 
   async update(umaCotacao: Cotacao): Promise<any> {
-    console.log(
-      "CotacaoRepository: save: " + JSON.stringify(umaCotacao)
-    );
+    console.log("CotacaoRepository: save: " + JSON.stringify(umaCotacao));
 
     let umaCotacaoDoc: ICotacaoPersistence =
       CotacaoMapper.toPersistence(umaCotacao);
 
     let result: ICotacaoPersistence | null =
       await CotacaoSchema.findOneAndUpdate(
-        { codigo: umaCotacao.codCotacao },
+        { codCotacao: umaCotacao.codCotacao },
         umaCotacaoDoc
       );
 
@@ -42,9 +36,7 @@ export default class CotacaoRepository {
   async findAll(): Promise<any> {
     console.log("CotacaoRepository: findAll ");
 
-    const result: ICotacaoPersistence[] = await CotacaoSchema.find(
-      {}
-    );
+    const result: ICotacaoPersistence[] = await CotacaoSchema.find({});
 
     let final_result = result.map((x) => CotacaoMapper.toDomain(x));
 
@@ -60,7 +52,6 @@ export default class CotacaoRepository {
 
     return CotacaoMapper.toDomain(result);
   }
-
 
   async deleteByCod(id: string): Promise<boolean> {
     console.log("CotacaoRepository: deleteById: " + JSON.stringify(id));
