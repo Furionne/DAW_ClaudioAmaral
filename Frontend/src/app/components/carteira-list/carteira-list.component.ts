@@ -1,68 +1,49 @@
 import { Component, OnInit } from '@angular/core';
-import { Carteira } from '../../models/carteira.model';
-import { CarteiraService } from '../../services/carteira/carteira.service';
+import { Carteira } from 'app/models/carteira.model';
+import { CarteiraService } from 'app/services/carteira/carteira.service';
+
+/**
+ * @title Binding event handlers and properties to the table rows.
+ */
 @Component({
   selector: 'app-carteira-list',
+  styleUrls: ['./carteira-list.component.css'],
   templateUrl: './carteira-list.component.html',
-  styleUrls: ['./carteira-list.component.css']
 })
-export class CarteiraListComponent implements OnInit {
-  carteiras?: Carteira[];
-  currentCarteira: Carteira = {
-    codCarteira: '',
-    designation: '',
-    codTitulo: '',
-    codCotacao: ''
-  };
-  currentIndex = -1;
-  title = '';
-  constructor(private carteiraService: CarteiraService) { }
+export class CarteiraListComponent {
+  carteiraList: Carteira[] = [];
+  columnsToDisplay: string[] = [
+    'codCarteira',
+    'designation',
+    'codTitulo',
+    'codCotacao',
+  ];
+  displayedColumns: string[] = [
+    'codCarteira',
+    'designation',
+    'codTitulo',
+    'codCotacao',
+  ];
+  // clickedRows = new Set<CarteiraList>();
+  constructor(private carteiraService: CarteiraService) {}
+
   ngOnInit(): void {
-    this.retrieveCarteiras();
+    this.getCarteiras();
   }
-  retrieveCarteiras(): void {
-    this.carteiraService.getAll()
-      .subscribe({
-        next: (data) => {
-          this.carteiras = data;
-          console.log(data);
-        },
-        error: (e) => console.error(e)
-      });
+
+  getCarteiras(): void {
+    this.carteiraService.getCarteiras().subscribe((carteira: any) => {
+      this.carteiraList = carteira;
+    });
   }
-  refreshList(): void {
-    this.retrieveCarteiras();
-    this.currentCarteira = {
-      codCarteira: '',
-      designation: '',
-      codTitulo: '',
-      codCotacao: ''
-    };
-    this.currentIndex = -1;
-  }
-  setActiveCarteira(carteira: Carteira, index: number): void {
-    this.currentCarteira = carteira;
-    this.currentIndex = index;
-  }
-  removeAllCarteiras(): void {
-    this.carteiraService.deleteAll()
-      .subscribe({
-        next: (res) => {
-          console.log(res);
-          this.refreshList();
-        },
-        error: (e) => console.error(e)
-      });
-  }
-  searchCodCarteira(codCarteira: string): void {
-    this.currentIndex = -1;
-    this.carteiraService.get(codCarteira)
-      .subscribe({
-        next: (data: Carteira[] | undefined) => {
-          this.carteiras = data;
-          console.log(data);
-        },
-        error: (e: any) => console.error(e)
-      });
-  }
+
+  // addCarteira(carteira: Carteira) {
+  //   this.carteiraService.create(carteira).subscribe({
+  //     next: (res) => {
+  //       console.log(res);
+  //       this.submitted = true;
+  //     },
+  //     error: (e) => console.error(e),
+  //   });
+  // }
 }

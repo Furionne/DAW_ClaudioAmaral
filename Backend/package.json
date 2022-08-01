@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Furionne/DAW_ClaudioAmaral#readme",
   "dependencies": {
+    "@types/cors": "^2.8.12",
     "@types/jsonwebtoken": "^8.5.8",
     "body-parser": "^1.20.0",
     "cors": "^2.8.5",

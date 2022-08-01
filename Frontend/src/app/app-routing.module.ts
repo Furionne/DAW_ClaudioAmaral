@@ -1,17 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CarteirasComponent } from './entidades/carteiras/carteiras.component';
-import { AddCarteiraComponent } from './components/carteira/add-carteira/add-carteira.component';
-import { CarteiraDetailsComponent } from './components/carteira-details/carteira-details.component';
 import { CotacoesComponent } from './entidades/cotacoes/cotacoes.component';
 import { LoginComponent } from './components/login/login.component';
 import { TitulosComponent } from './entidades/titulos/titulos.component';
+import { MainContainerComponent } from './components/main-container/main-container.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  {
+    path: '',
+    pathMatch: 'full',
+    component: MainContainerComponent,
+  },
   { path: 'carteiras', component: CarteirasComponent },
-  { path: 'carteiras/:id', component: CarteiraDetailsComponent },
-  { path: 'add', component: AddCarteiraComponent },
   { path: 'cotacoes', component: CotacoesComponent },
   { path: 'titulos', component: TitulosComponent },
   { path: 'login', component: LoginComponent },

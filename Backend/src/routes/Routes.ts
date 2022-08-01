@@ -8,13 +8,12 @@ export default class Routes {
   private _cotacao: CotacaoRoute;
   private _titulo: TituloRoute;
   private _middleware: Middleware;
- 
+
   constructor() {
     this._carteira = new CarteiraRoute();
     this._cotacao = new CotacaoRoute();
     this._titulo = new TituloRoute();
-    this._middleware = new Middleware;
-    
+    this._middleware = new Middleware();
   }
 
   get carteira(): CarteiraRoute {
@@ -29,5 +28,4 @@ export default class Routes {
   get middleware(): Middleware {
     return this._middleware;
   }
- 
 }

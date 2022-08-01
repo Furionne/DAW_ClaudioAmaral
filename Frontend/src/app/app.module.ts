@@ -20,8 +20,6 @@ import { MatDividerModule } from '@angular/material/divider';
 import { CarteirasComponent } from './entidades/carteiras/carteiras.component';
 import { CotacoesComponent } from './entidades/cotacoes/cotacoes.component';
 import { TitulosComponent } from './entidades/titulos/titulos.component';
-import { AddCarteiraComponent } from './components/carteira/add-carteira/add-carteira.component';
-import { CarteiraDetailsComponent } from './components/carteira-details/carteira-details.component';
 import { CarteiraListComponent } from './components/carteira-list/carteira-list.component';
 import { LoginComponent } from './components/login/login.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -44,7 +42,6 @@ import { Card4Component } from './components/card4/card.component';
 import { Card5Component } from './components/card5/card5.component';
 import { MenuCenter2Component } from './components/menu-center2/menu-center2.component';
 import { MenuCenter3Component } from './components/menu-center3/menu-center3.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,8 +52,6 @@ import { MenuCenter3Component } from './components/menu-center3/menu-center3.com
     CarteirasComponent,
     CotacoesComponent,
     TitulosComponent,
-    AddCarteiraComponent,
-    CarteiraDetailsComponent,
     CarteiraListComponent,
     LoginComponent,
     AddCotacaoComponent,

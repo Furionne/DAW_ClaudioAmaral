@@ -1,4 +1,4 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+<table mat-table [dataSource]="carteiraList" class="mat-elevation-z8 demo-table">
   <!-- Position Column -->
   <ng-container matColumnDef="position">
     <th mat-header-cell *matHeaderCellDef>No.</th>
@@ -31,6 +31,7 @@
     *matRowDef="let row; columns: displayedColumns"
   ></tr>
 </table>
+<button mat-raised-button (click)="getCarteiras()">Get Carteira</button>
 
 <div>
   <h3>Click Log</h3>
