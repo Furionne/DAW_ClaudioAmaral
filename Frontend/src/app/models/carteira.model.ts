@@ -1,6 +1,6 @@
-export interface Carteira {
-    codCarteira: string;
-    designation: string;
-    codTitulo: string;
-    codCotacao: string;
+export class Carteira {
+  public codCarteira: string = '';
+  public designation: string = '';
+  public codTitulo: string = '';
+  public codCotacao: string = '';
 }

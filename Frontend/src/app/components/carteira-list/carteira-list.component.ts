@@ -37,6 +37,10 @@ export class CarteiraListComponent {
     });
   }
 
+  createRecipe() {
+    this.dialog.open(RecipeCreateComponent, {});
+  }
+
   // addCarteira(carteira: Carteira) {
   //   this.carteiraService.create(carteira).subscribe({
   //     next: (res) => {

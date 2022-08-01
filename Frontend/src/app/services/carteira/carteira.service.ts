@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, of, tap } from 'rxjs';
 import { Carteira } from '../../models/carteira.model';
 import { catchError } from 'rxjs';
 
@@ -15,19 +15,24 @@ export class CarteiraService {
       .get<Carteira[]>(baseUrl)
       .pipe(catchError(this.handleError<Carteira[]>('getCarteiras', [])));
   }
-    get(codCarteira: string): Observable<any> {
-      return this.http.get(`${baseUrl}/${codCarteira}`);
-    }
-  create(codCarteira: Carteira): Observable<any> {
-    return this.http.post(baseUrl, codCarteira);
+  get(codCarteira: string): Observable<any> {
+    return this.http.get(`${baseUrl}/${codCarteira}`);
   }
-    update(codCarteira: Carteira): Observable<any> {
-      return this.http.put(`${baseUrl}/${codCarteira}`, codCarteira);
-    }
-    delete(codCarteira: any): Observable<any> {
-      return this.http.delete(`${baseUrl}/${codCarteira}`);
-    }
- 
+  addCarteira(codCarteira: Carteira): Observable<any> {
+    return this.http
+      .post(baseUrl, codCarteira)
+      .pipe(catchError(this.handleError<Carteira>('addCarteira')));
+  }
+  updateCarteira(codCarteira: Carteira): Observable<any> {
+    return this.http
+      .put(`${baseUrl}/${codCarteira}`, codCarteira)
+      .pipe(catchError(this.handleError<Carteira>('updateCarteira')));
+  }
+  delete(codCarteira: any): Observable<any> {
+    return this.http
+      .delete<any>(`${baseUrl}/${codCarteira}`)
+      .pipe(catchError(this.handleError<Boolean>('deleteCarteira')));
+  }
 
   //   }
 
