@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import Routes from "./src/routes/Routes";
+import cors from "cors";
 
 export class App {
   public app: express.Application = express();
@@ -18,13 +19,13 @@ export class App {
   }
 
   private config(): void {
+    this.app.use(cors());
     this.app.use(express.json());
   }
 
   private mongoSetup(): void {
     mongoose.Promise = global.Promise;
     mongoose.connect(this.mongoUrl);
-
 
     mongoose.connection.on("error", () => {
       console.error("connection error");
