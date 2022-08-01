@@ -29,6 +29,8 @@
     (click)="selectTitulo(row)"
   ></tr>
 </table>
+<p></p>
+<p></p>
 {{ formTitulo | json }}
 <form #form="ngForm" (ngSubmit)="onSubmit(form)">
   <input [(ngModel)]="formTitulo.codTitulo" name="codTitulo" type="text" />

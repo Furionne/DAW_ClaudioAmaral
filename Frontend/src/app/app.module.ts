@@ -25,7 +25,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { CotacaoListComponent } from './components/cotacao-list/cotacao-list.component';
 import { TituloListComponent } from './components/titulo-list/titulo-list.component';
-import { TituloDetailsComponent } from './components/titulo-details/titulo-details.component';
 import { MainContainerComponent } from './components/main-container/main-container.component';
 import { TableComponent } from './components/table/table.component';
 import { MatTableModule } from '@angular/material/table';
@@ -49,7 +48,6 @@ import { MenuCenter3Component } from './components/menu-center3/menu-center3.com
     LoginComponent,
     CotacaoListComponent,
     TituloListComponent,
-    TituloDetailsComponent,
     MainContainerComponent,
     TableComponent,
     NavbarComponent,

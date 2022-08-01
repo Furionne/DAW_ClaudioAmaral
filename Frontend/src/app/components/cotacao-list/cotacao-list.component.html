@@ -33,6 +33,8 @@
     (click)="selectCotacao(row)"
   ></tr>
 </table>
+<p></p>
+<p></p>
 {{ formCotacao | json }}
 <form #form="ngForm" (ngSubmit)="onSubmit(form)">
   <input [(ngModel)]="formCotacao.codCotacao" name="codCotacao" type="text" />

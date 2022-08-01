@@ -37,7 +37,11 @@
     (click)="selectCarteira(row)"
   ></tr>
 </table>
-{{ formCarteira | json }}
+
+<p></p>
+<p></p>
+
+<!-- {{ formCarteira | json }}
 <form #form="ngForm" (ngSubmit)="onSubmit(form)">
   <input [(ngModel)]="formCarteira.codCarteira" name="codCateira" type="text" />
   <input
@@ -58,4 +62,64 @@
   >
     Delete
   </button>
+</form> -->
+
+<!-- <div class="form-container"> -->
+<form class="form-container" #form="ngForm" (ngSubmit)="onSubmit(form)">
+  <mat-form-field appearance="fill">
+    <mat-label>Carteira</mat-label>
+    <input
+      matInput
+      #input
+      [(ngModel)]="formCarteira.codCarteira"
+      name="codCateira"
+      placeholder="Ex. Nougat"
+    />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Designation</mat-label>
+    <input
+      matInput
+      #input
+      [(ngModel)]="formCarteira.designation"
+      name="designation"
+      placeholder="Ex. Nougat"
+    />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Título</mat-label>
+    <input
+      matInput
+      #input
+      [(ngModel)]="formCarteira.codTitulo"
+      name="codTitulo"
+      placeholder="Ex. Nougat"
+    />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Cotação</mat-label>
+    <input
+      matInput
+      #input
+      [(ngModel)]="formCarteira.codCotacao"
+      name="codCotacao"
+      placeholder="Ex. Nougat"
+    />
+  </mat-form-field>
+  <button mat-raised-button type="submit">
+    {{ selectedCarteira ? "Edit" : "Add" }}
+  </button>
+  <p></p>
+  <button
+    *ngIf="selectedCarteira"
+    type="button"
+    mat-raised-button
+    (click)="delete(formCarteira)"
+  >
+    Delete
+  </button>
 </form>
+<!-- </div> -->
