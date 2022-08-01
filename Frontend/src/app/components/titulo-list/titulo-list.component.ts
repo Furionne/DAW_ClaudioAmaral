@@ -1,66 +1,74 @@
 import { Component, OnInit } from '@angular/core';
-import { Titulo } from '../../models/titulo.model';
-import { TituloService } from '../../services/titulo/titulo.service';
+import { NgForm } from '@angular/forms';
+import { Titulo } from 'app/models/titulo.model';
+import { TituloService } from 'app/services/titulo/titulo.service';
+import { Observable } from 'rxjs';
+
+/**
+ * @title Binding event handlers and properties to the table rows.
+ */
 @Component({
   selector: 'app-titulo-list',
+  styleUrls: ['./titulo-list.component.css'],
   templateUrl: './titulo-list.component.html',
-  styleUrls: ['./titulo-list.component.css']
 })
-export class TituloListComponent implements OnInit {
-  titulos?: Titulo[];
-  currentTitulo: Titulo = {
-    codTitulo: '',
-    designation: '',
-    codCarteira: '',
-  };
-  currentIndex = -1;
-  title = '';
-  constructor(private tituloService: TituloService) { }
+export class TituloListComponent {
+  tituloList: Titulo[] = [];
+  columnsToDisplay: string[] = ['codTitulo', 'designation', 'codCarteira'];
+  displayedColumns: string[] = ['codTitulo', 'designation', 'codCarteira'];
+  titulo: any;
+  selectedTitulo: boolean = false;
+
+  formTitulo = new Titulo();
+  // clickedRows = new Set<TituloList>();
+  constructor(private tituloService: TituloService) {}
+
   ngOnInit(): void {
-    this.retrieveTitulos();
+    this.getTitulos();
   }
-  retrieveTitulos(): void {
-    this.tituloService.getAll()
-      .subscribe({
-        next: (data) => {
-          this.titulos = data;
-          console.log(data);
-        },
-        error: (e) => console.error(e)
+
+  getTitulos(): void {
+    this.tituloService.getTitulos().subscribe((titulo: any) => {
+      this.tituloList = titulo;
+    });
+  }
+
+  selectTitulo(titulo: Titulo) {
+    if (this.selectedTitulo && this.formTitulo.codTitulo === titulo.codTitulo) {
+      this.selectedTitulo = false;
+      this.formTitulo = new Titulo();
+    } else {
+      this.selectedTitulo = true;
+      this.formTitulo = { ...titulo };
+    }
+  }
+
+  add(codTitulo: string): void {
+    codTitulo = codTitulo.trim();
+    if (!codTitulo) {
+      return;
+    }
+    this.tituloService
+      .addTitulo({ codTitulo } as Titulo)
+      .subscribe((titulo) => {
+        this.titulo.push(titulo);
       });
   }
-  refreshList(): void {
-    this.retrieveTitulos();
-    this.currentTitulo = {
-      codTitulo: '',
-      designation: '',
-      codCarteira: '',
-    };
-    this.currentIndex = -1;
-  }
-  setActiveTitulo(titulo: Titulo, index: number): void {
-    this.currentTitulo = titulo;
-    this.currentIndex = index;
-  }
-  removeAllTitulos(): void {
-    this.tituloService.deleteAll()
-      .subscribe({
-        next: (res) => {
-          console.log(res);
-          this.refreshList();
-        },
-        error: (e) => console.error(e)
+
+  onSubmit(f: NgForm) {
+    if (f.valid && this.formTitulo.codTitulo) {
+      console.log(this.formTitulo);
+      let obs: Observable<Titulo>;
+      if (this.selectedTitulo) {
+        obs = this.tituloService.updateTitulo(this.formTitulo);
+      } else {
+        obs = this.tituloService.addTitulo(this.formTitulo);
+      }
+
+      obs.subscribe((res) => {
+        this.getTitulos();
+        f.reset();
       });
-  }
-  searchCodTitulo(codTitulo: string): void {
-    this.currentIndex = -1;
-    this.tituloService.get(codTitulo)
-      .subscribe({
-        next: (data: Titulo[] | undefined) => {
-          this.titulos = data;
-          console.log(data);
-        },
-        error: (e: any) => console.error(e)
-      });
+    }
   }
 }

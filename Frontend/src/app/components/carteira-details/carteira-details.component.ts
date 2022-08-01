@@ -9,24 +9,18 @@ import { Router, ActivatedRoute } from '@angular/router';
   templateUrl: './carteira-details.component.html',
   styleUrls: ['./carteira-details.component.css'],
 })
-export class CarteiraDetailsComponent implements OnInit {
-      
-
-  constructor(
-    private carteiraService: CarteiraService,
-    private route: ActivatedRoute,
-    private location: Location
-  ) {}
-
-  ngOnInit(): void {
-      this.getCarteira();
-    }
-  }
-  
- getCarteira(): void {
-  const codCarteira = parseInt(this.route.snapshot.paramMap.get('codCarteira')!);
-    this.carteiraService.getCarteira(codCarteira)
-      .subscribe(carteira => this.carteira = carteira);
-  
+export class CarteiraDetailsComponent {
+  //   constructor(
+  //     private carteiraService: CarteiraService,
+  //     private route: ActivatedRoute,
+  //     private location: Location
+  //   ) {}
+  //   ngOnInit(): void {
+  //       this.getCarteira();
+  //     }
+  //   }
+  //  getCarteira(): void {
+  //   const codCarteira = parseInt(this.route.snapshot.paramMap.get('codCarteira')!);
+  //     this.carteiraService.getCarteira(codCarteira)
+  //       .subscribe(carteira => this.carteira = carteira);
 }
-

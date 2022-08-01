@@ -42,12 +42,4 @@
   <button mat-raised-button type="submit">
     {{ selectedCotacao ? "Edit" : "Add" }}
   </button>
-  <button
-    *ngIf="selectedCotacao"
-    type="button"
-    mat-raised-button
-    (click)="delete(formCotacao)"
-  >
-    Delete
-  </button>
 </form>

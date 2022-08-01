@@ -1,5 +1,5 @@
-export interface Titulo {
-    codTitulo: string;
-    designation: string;
-    codCarteira: string;
+export class Titulo {
+  public codTitulo: string = '';
+  public designation: string = '';
+  public codCarteira: string = '';
 }

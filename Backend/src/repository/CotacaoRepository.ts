@@ -52,12 +52,4 @@ export default class CotacaoRepository {
 
     return CotacaoMapper.toDomain(result);
   }
-
-  async deleteByCod(id: string): Promise<boolean> {
-    console.log("CotacaoRepository: deleteById: " + JSON.stringify(id));
-
-    const result: any = await CotacaoSchema.deleteOne({ codCotacao: id });
-
-    return result.acknowledged;
-  }
 }
